@@ -1,6 +1,5 @@
 from django.db import models
 from twilio.rest import Client
-
 # Create your models here.
 
 
@@ -12,13 +11,13 @@ class Score(models.Model):
 
     def save(self, *args, **kwargs):
         if self.result < 70:
-            account_sid = 'ACbf1f7d728696d08a18ba347b8abf5906'
-            auth_token = '5c08aabd9cf5f3c75e1d26095ee433bc'
+            account_sid = 'twillio sid id'
+            auth_token = 'twilio sid auth token'
             client = Client(account_sid, auth_token)
 
-            message = client.message.create(
+            message = client.messages.create(
                 body=f'The current result is bad - {self.result}',
-                from_='+19036622331',
+                from_='your twllio number',
                 to='+918052027789'
             )
             print(message.sid)
